@@ -12,7 +12,7 @@ class LineChartImageAnalyzer extends Attributes
     /**
      * @var string
      */
-    protected $_filepath;
+    protected $_binary;
 
     /**
      * @var resource
@@ -42,24 +42,14 @@ class LineChartImageAnalyzer extends Attributes
 
 
     public function __construct($filepath) {
-        $this->_filepath = $filepath;
+        $this->_binary   = file_get_contents($filepath);
         $this->_info     = collect(getimagesize($filepath));
         $this->_colors   = new PointColors();
     }
 
     public function getAttributesImage() {
         if ( ! $this->_image) {
-            switch ($this->_info->get('mime', null)) {
-                case 'image/png': 
-                    $this->_image = imagecreatefrompng($this->_filepath);
-                    break;
-                case 'image/jpg':
-                case 'image/jpeg':
-                    $this->_image = imagecreatefromjpeg($this->_filepath);
-                    break;
-                default:
-                    throw new \Exception('E');
-            }
+            $this->_image = imagecreatefromstring($this->_binary);
         }
         return $this->_image;
     }
