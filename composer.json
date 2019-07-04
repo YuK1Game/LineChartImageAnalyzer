@@ -1,0 +1,26 @@
+{
+    "name": "lcia/linechart-image-analyzer",
+    "license": "MIT",
+    "type": "project",
+    "description": "LCIA PHP package.",
+    "autoload": {
+        "psr-4" : {
+            "LCIA\\" : "src/LCIA/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4" : {
+            "Tests\\LCIA\\" : "tests/LCIA/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8"
+    },
+    "scripts": {
+        "phpunit" : "vendor/bin/phpunit",
+        "phpunit-windows" : "vendor\\bin\\phpunit.bat"
+    },
+    "require": {
+        "tightenco/collect": "^5.8"
+    }
+}
