@@ -47,14 +47,14 @@ class LineChartImageAnalyzer extends Attributes
         $this->_colors   = new PointColors();
     }
 
-    public function getAttributesImage() {
+    public function getImageAttribute() {
         if ( ! $this->_image) {
             $this->_image = imagecreatefromstring($this->_binary);
         }
         return $this->_image;
     }
 
-    public function getAttributesPointColors() {
+    public function getPointColorsAttribute() {
         if ($this->_colors->count() === 0) {
             foreach ($this->getAllPoints() as $point) {
                 $colorValue = imagecolorat($this->image, $point->x, $point->y);
@@ -81,15 +81,15 @@ class LineChartImageAnalyzer extends Attributes
         }
     }
 
-    public function baseLineY() {
+    public function getBaseYAttribute() {
         return new Y($this->pointColors, $this->_baseLineColor);
     }
 
-    public function baseLineX() {
+    public function getBaseXAttribute() {
         return new X($this->pointColors, $this->_baseLineColor);
     }
 
-    public function chartLine() {
+    public function getChartLineAttribute() {
         return new Chart($this->pointColors, $this->_chartLineColor);
     }
 

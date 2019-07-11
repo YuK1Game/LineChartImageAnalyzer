@@ -16,7 +16,7 @@ class Chart extends Attributes
         $this->_color = $color;
     }
 
-    public function getAttributesExtractedPoints() {
+    public function getExtractedPointsAttribute() {
         if ( ! $this->_extractedPoints) {
             $this->_extractedPoints = $this->_pointColors
                 ->getSimilarities($this->_color)
@@ -28,7 +28,7 @@ class Chart extends Attributes
         return $this->_extractedPoints;
     }
 
-    public function getAttributesTopPoint() {
+    public function getTopPointAttribute() {
         return $this->extractedPoints
             ->sortBy(function(Point $point) {
                 return (int) $point->y;
@@ -37,7 +37,7 @@ class Chart extends Attributes
             ->first();
     }
 
-    public function getAttributesBottomPoint() {
+    public function getBottomPointAttribute() {
         return $this->extractedPoints
             ->sortBy(function(Point $point) {
                 return $point->y;
@@ -46,7 +46,7 @@ class Chart extends Attributes
             ->last();
     }
 
-    public function getAttributesFirstPoint() {
+    public function getFirstPointAttribute() {
         return $this->extractedPoints
             ->sortBy(function(Point $point) {
                 return $point->x;
@@ -55,7 +55,7 @@ class Chart extends Attributes
             ->first();
     }
 
-    public function getAttributesLastPoint() {
+    public function getLastPointAttribute() {
         return $this->extractedPoints
             ->sortBy(function(Point $point) {
                 return $point->x;

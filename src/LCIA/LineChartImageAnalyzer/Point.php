@@ -20,11 +20,11 @@ class Point extends Attributes
         $this->_y = $y;
     }
 
-    public function getAttributesX() {
+    public function getXAttribute() {
         return $this->_x;
     }
 
-    public function getAttributesY() {
+    public function getYAttribute() {
         return $this->_y;
     }
 

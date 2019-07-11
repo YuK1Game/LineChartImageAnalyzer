@@ -20,31 +20,31 @@ class PointColor extends Attributes
         $this->_color = $color;
     }
 
-    public function getAttributesColor() {
+    public function getColorAttribute() {
         return $this->_color;
     }
 
-    public function getAttributesPoint() {
+    public function getPointAttribute() {
         return $this->_point;
     }
 
-    public function getAttributesX() {
+    public function getXAttribute() {
         return $this->_point->x;
     }
 
-    public function getAttributesY() {
+    public function getYAttribute() {
         return $this->_point->y;
     }
 
-    public function getAttributesRed() {
+    public function getRedAttribute() {
         return $this->_color->red;
     }
 
-    public function getAttributesGreen() {
+    public function getGreenAttribute() {
         return $this->_color->green;
     }
 
-    public function getAttributesBlue() {
+    public function getBlueAttribute() {
         return $this->_color->blue;
     }
 

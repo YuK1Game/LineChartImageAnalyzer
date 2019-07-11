@@ -44,15 +44,15 @@ class Color extends Attributes
         return 1 - (abs($blue - $this->_blue) / 255);
     }
 
-    public function getAttributesRed() {
+    public function getRedAttribute() {
         return $this->_red;
     }
     
-    public function getAttributesGreen() {
+    public function getGreenAttribute() {
         return $this->_green;
     }
     
-    public function getAttributesBlue() {
+    public function getBlueAttribute() {
         return $this->_blue;
     }
     
