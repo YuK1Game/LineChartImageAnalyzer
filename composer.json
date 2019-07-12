@@ -17,8 +17,12 @@
         "phpunit/phpunit": "^8"
     },
     "scripts": {
-        "phpunit" : "vendor/bin/phpunit",
-        "phpunit-windows" : "vendor\\bin\\phpunit.bat"
+        "test" : "vendor\\bin\\phpunit.bat",
+        "push" : [
+            "git add .",
+            "git commit -m \"wip\"",
+            "git push origin master"
+        ]
     },
     "require": {
         "tightenco/collect": "^5.8"

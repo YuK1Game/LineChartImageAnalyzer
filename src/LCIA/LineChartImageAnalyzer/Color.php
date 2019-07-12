@@ -32,6 +32,13 @@ class Color extends Attributes
         $this->_alpha = $alpha ?? 0;
     }
 
+    public static function createFromColorIndex(int $colorIndex) {
+        $r = ($colorIndex >> 16) & 0xFF;
+        $g = ($colorIndex >>  8) & 0xFF;
+        $b = ($colorIndex      ) & 0xFF;
+        return new self($r, $g, $b);
+    }
+
     public function getRedSimilarity(int $red) {
         return 1 - (abs($red - $this->_red) / 255);
     }

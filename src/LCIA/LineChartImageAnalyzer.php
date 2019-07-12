@@ -39,6 +39,15 @@ class LineChartImageAnalyzer extends Attributes
      */
     protected $_chartLineColor;
 
+    /**
+     * @var LCIA\LineChartImageAnalyzer\PointColors
+     */
+    protected $_baseColors;
+
+    /**
+     * @var LCIA\LineChartImageAnalyzer\PointColors
+     */
+    protected $_chartColors;
 
 
     public function __construct($filepath) {
@@ -54,15 +63,23 @@ class LineChartImageAnalyzer extends Attributes
         return $this->_image;
     }
 
-    public function getPointColorsAttribute() {
-        if ($this->_colors->count() === 0) {
+    private function initColors() {
+        if ( ! $this->_baseColors || ! $this->_chartColors) {
+            $this->_baseColors = new PointColors();
+            $this->_chartColors = new PointColors();
+
             foreach ($this->getAllPoints() as $point) {
-                $colorValue = imagecolorat($this->image, $point->x, $point->y);
-                $colors = imagecolorsforindex($this->image, $colorValue);
-                $this->_colors->add(new PointColor($point, new Color($colors['red'], $colors['green'], $colors['blue'], $colors['alpha'])));
+                $colors = imagecolorsforindex($this->image, imagecolorat($this->image, $point->x, $point->y));
+                $color = new Color($colors['red'], $colors['green'], $colors['blue'], $colors['alpha']);
+
+                if ($color->getSimilarity($this->_baseLineColor) >= 0.8) {
+                    $this->_baseColors->add(new PointColor($point, $color));
+                }
+                if ($color->getSimilarity($this->_chartLineColor) >= 0.8) {
+                    $this->_baseColors->add(new PointColor($point, $color));
+                }
             }
         }
-        return $this->_colors;
     }
 
     public function setBaseLineColor(int $red, int $green, int $blue) {
@@ -82,15 +99,18 @@ class LineChartImageAnalyzer extends Attributes
     }
 
     public function getBaseYAttribute() {
-        return new Y($this->pointColors, $this->_baseLineColor);
+        $this->initColors();
+        return new Y($this->_baseColors, $this->_baseLineColor);
     }
 
     public function getBaseXAttribute() {
-        return new X($this->pointColors, $this->_baseLineColor);
+        $this->initColors();
+        return new X($this->_baseColors, $this->_baseLineColor);
     }
 
     public function getChartLineAttribute() {
-        return new Chart($this->pointColors, $this->_chartLineColor);
+        $this->initColors();
+        return new Chart($this->_chartColors, $this->_chartLineColor);
     }
 
 }
