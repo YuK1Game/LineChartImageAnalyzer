@@ -25,7 +25,6 @@ class BaseLine extends Attributes
     public function getExtractedPointsAttribute() {
         if ( ! $this->_extractedPoints) {
             $this->_extractedPoints = $this->_pointColors
-                ->getSimilarities($this->_color)
                 ->groupBy(function(PointColor $pointcolor) {
                     return $pointcolor->{ $this->_key };
                 })

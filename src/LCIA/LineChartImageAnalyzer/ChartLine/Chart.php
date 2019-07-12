@@ -19,7 +19,6 @@ class Chart extends Attributes
     public function getExtractedPointsAttribute() {
         if ( ! $this->_extractedPoints) {
             $this->_extractedPoints = $this->_pointColors
-                ->getSimilarities($this->_color)
                 ->map(function(PointColor $pointColor) {
                     return $pointColor->point;
                 })
