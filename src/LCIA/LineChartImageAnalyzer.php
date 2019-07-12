@@ -76,7 +76,7 @@ class LineChartImageAnalyzer extends Attributes
                     $this->_baseColors->add(new PointColor($point, $color));
                 }
                 if ($color->getSimilarity($this->_chartLineColor) >= 0.8) {
-                    $this->_baseColors->add(new PointColor($point, $color));
+                    $this->_chartColors->add(new PointColor($point, $color));
                 }
             }
         }

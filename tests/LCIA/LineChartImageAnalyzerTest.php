@@ -17,6 +17,9 @@ class LineChartImageAnalyzerTest extends TestCase
 
         $this->assertSame( 81, $lcia->base_y->base);
         $this->assertSame( 80, $lcia->base_x->base);
+
+        $this->assertSame( 81, $lcia->chart_line->first_point->y);
+        $this->assertSame(118, $lcia->chart_line->last_point->y);
         
     }
 /*
